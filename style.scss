@@ -1,0 +1,724 @@
+$gradient: linear-gradient(
+  45deg,
+  hotpink,
+  lightcoral,
+  gold,
+  palegreen,
+  pink,
+  cadetblue,
+  plum
+);
+
+$low: 2rem;
+$mid: 4rem;
+$high: 6rem;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: "Quattrocento Sans", sans-serif;
+}
+
+.arrow {
+  width: 60px;
+  background-color: rgb(153, 187, 202);
+  padding: 0.75em;
+  border-radius: 50%;
+  box-shadow: 0px 8px 6px -6px rgba(0, 0, 0, 0.8);
+  animation: float 1.5s ease-in infinite alternate;
+
+  &:hover {
+    transform: translateY(2px);
+    box-shadow: none;
+  }
+
+  &--space {
+    position: absolute;
+    top: 85%;
+    left: 47.5%;
+  }
+}
+
+/* ========================================
+
+  WELCOME
+
+   ====================================== */
+
+.welcome {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  animation: color 2.5s ease-in forwards;
+
+  &__title {
+    font-size: 5rem;
+    text-transform: uppercase;
+    font-weight: 700;
+    background-image: linear-gradient(
+      45deg,
+      lightcoral,
+      palegreen,
+      pink,
+      cadetblue,
+      plum
+    );
+    display: inline-block;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    animation: bg-image 8s forwards;
+    background-size: 400%;
+  }
+}
+
+.welcome__arrow {
+  opacity: 0;
+  width: 60px;
+  display: block;
+  margin: 0 auto;
+  position: absolute;
+  top: 65%;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: rgb(153, 187, 202);
+  padding: 0.75em;
+  border-radius: 50%;
+  transition: all 0.5s ease-in-out;
+  box-shadow: inset 5px 5px 10px rgb(140, 140, 167),
+    inset -5px -5px 10px rgba(0, 0, 0, 0.3);
+  animation: slideDown 2s 2s ease forwards;
+}
+
+@keyframes color {
+  0% {
+    background-color: #aba2ca;
+  }
+
+  100% {
+    background-color: white;
+  }
+}
+
+@keyframes bg-image {
+  0% {
+    background-position: left;
+    opacity: 0;
+    transform: scale(0.98);
+  }
+
+  100% {
+    background-position: right;
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes slideDown {
+  100% {
+    opacity: 1;
+    top: 70%;
+  }
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(0px);
+  }
+  100% {
+    transform: translateY(5px);
+  }
+}
+
+/* ========================================
+
+ 3D Flip Card
+
+   ====================================== */
+
+.card-project {
+  background: #f7f7f7;
+  height: 100vh;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-direction: column;
+  position: relative;
+}
+
+.card {
+  width: 300px;
+
+  &__content {
+    background-color: white;
+    height: 300px;
+    text-align: center;
+    position: relative;
+    padding: 5em;
+    transition: transform 3s;
+    transform-style: preserve-3d;
+    box-shadow: 0px 10px 10px -5px rgba(0, 0, 0, 0.8);
+  }
+  &__front,
+  &__back {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    padding: 2em;
+    backface-visibility: hidden;
+    transform-style: preserve-3d;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  &__title {
+    font-size: 2.5rem;
+    transform: translateZ($high);
+    margin-left: 100px;
+    margin-top: 30px;
+  }
+
+  &__body {
+    transform: translateZ($mid);
+    font-size: 1.5rem;
+    margin-top: 30px;
+  }
+  &__front {
+    background-image: url("https://www.kaon.com/img/kaon-logo.png");
+    background-repeat: no-repeat;
+    background-position-y: 8%;
+    background-position-x: 8%;
+    color: #eba621;
+    background-blend-mode: lighten;
+    background-color: rgba(68, 62, 69, 1);
+
+    &::before {
+      position: absolute;
+      content: "";
+      padding: 10em;
+      border: 2px solid rgb(46, 45, 45);
+      transform: translateZ($low);
+      transform-style: preserve-3d;
+    }
+  }
+  &__back {
+    background-image: url("https://www.kaon.com/img/kaon-logo.png");
+    background-repeat: no-repeat;
+    background-position-y: 8%;
+    background-position-x: 92%;
+    transform: rotateY(180deg);
+    background-blend-mode: lighten;
+    background-color: rgba(255, 255, 255, 0.5);
+    color: #eba621;
+  }
+}
+
+.card:hover .card__content {
+  transform: rotateY(180deg);
+}
+
+/* ========================================
+
+Rotation
+
+   ====================================== */
+.rotation {
+  background: white;
+  height: 100vh;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-direction: column;
+  position: relative;
+}
+.container {
+  width: 400px;
+}
+
+.frame {
+  border-radius: 50%;
+  box-shadow: 2px 4px 6px rgba(0, 0, 0, 0.3);
+  background: black;
+  width: 400px;
+  height: 400px;
+  display: flex;
+  margin: 0 auto;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.circle {
+  border: 4px inset white;
+  height: 260px;
+  width: 260px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+}
+
+.circle-1 {
+  animation: circle1 8s ease-in-out infinite alternate;
+}
+
+@keyframes circle1 {
+  100% {
+    transform: rotate(18deg) scaleY(0.4);
+    border-radius: 50%;
+    border-color: skyblue;
+  }
+}
+.circle-2 {
+  animation: circle2 8s ease-in-out infinite alternate;
+}
+
+@keyframes circle2 {
+  100% {
+    transform: rotate(36deg) scaleY(0.4);
+    border-radius: 50%;
+    border-color: skyblue;
+  }
+}
+.circle-3 {
+  animation: circle3 8s ease-in-out infinite alternate;
+}
+
+@keyframes circle3 {
+  100% {
+    transform: rotate(54deg) scaleY(0.4);
+    border-radius: 50%;
+    border-color: skyblue;
+  }
+}
+.circle-4 {
+  animation: circle4 8s ease-in-out infinite alternate;
+}
+
+@keyframes circle4 {
+  100% {
+    transform: rotate(72deg) scaleY(0.4);
+    border-radius: 50%;
+    border-color: skyblue;
+  }
+}
+.circle-5 {
+  animation: circle5 8s ease-in-out infinite alternate;
+}
+
+@keyframes circle5 {
+  100% {
+    transform: rotate(90deg) scaleY(0.4);
+    border-radius: 50%;
+    border-color: skyblue;
+  }
+}
+.circle-6 {
+  animation: circle6 8s ease-in-out infinite alternate;
+}
+
+@keyframes circle6 {
+  100% {
+    transform: rotate(108deg) scaleY(0.4);
+    border-radius: 50%;
+    border-color: skyblue;
+  }
+}
+.circle-7 {
+  animation: circle7 8s ease-in-out infinite alternate;
+}
+
+@keyframes circle7 {
+  100% {
+    transform: rotate(126deg) scaleY(0.4);
+    border-radius: 50%;
+    border-color: skyblue;
+  }
+}
+.circle-8 {
+  animation: circle8 8s ease-in-out infinite alternate;
+}
+
+@keyframes circle8 {
+  100% {
+    transform: rotate(144deg) scaleY(0.4);
+    border-radius: 50%;
+    border-color: skyblue;
+  }
+}
+.circle-9 {
+  animation: circle9 8s ease-in-out infinite alternate;
+}
+
+@keyframes circle9 {
+  100% {
+    transform: rotate(162deg) scaleY(0.4);
+    border-radius: 50%;
+    border-color: skyblue;
+  }
+}
+.circle-10 {
+  animation: circle10 8s ease-in-out infinite alternate;
+}
+
+@keyframes circle10 {
+  100% {
+    transform: rotate(180deg) scaleY(0.4);
+    border-radius: 50%;
+    border-color: skyblue;
+  }
+}
+.circle-1:nth-of-type(even) {
+  animation: circle-reverse1 8s ease-in-out infinite alternate;
+}
+
+@keyframes circle-reverse1 {
+  100% {
+    transform: rotate(-18deg) scaleY(0.4);
+    border-radius: 50%;
+  }
+}
+.circle-2:nth-of-type(even) {
+  animation: circle-reverse2 8s ease-in-out infinite alternate;
+}
+
+@keyframes circle-reverse2 {
+  100% {
+    transform: rotate(-36deg) scaleY(0.4);
+    border-radius: 50%;
+  }
+}
+.circle-3:nth-of-type(even) {
+  animation: circle-reverse3 8s ease-in-out infinite alternate;
+}
+
+@keyframes circle-reverse3 {
+  100% {
+    transform: rotate(-54deg) scaleY(0.4);
+    border-radius: 50%;
+  }
+}
+.circle-4:nth-of-type(even) {
+  animation: circle-reverse4 8s ease-in-out infinite alternate;
+}
+
+@keyframes circle-reverse4 {
+  100% {
+    transform: rotate(-72deg) scaleY(0.4);
+    border-radius: 50%;
+  }
+}
+.circle-5:nth-of-type(even) {
+  animation: circle-reverse5 8s ease-in-out infinite alternate;
+}
+
+@keyframes circle-reverse5 {
+  100% {
+    transform: rotate(-90deg) scaleY(0.4);
+    border-radius: 50%;
+  }
+}
+.circle-6:nth-of-type(even) {
+  animation: circle-reverse6 8s ease-in-out infinite alternate;
+}
+
+@keyframes circle-reverse6 {
+  100% {
+    transform: rotate(-108deg) scaleY(0.4);
+    border-radius: 50%;
+  }
+}
+.circle-7:nth-of-type(even) {
+  animation: circle-reverse7 8s ease-in-out infinite alternate;
+}
+
+@keyframes circle-reverse7 {
+  100% {
+    transform: rotate(-126deg) scaleY(0.4);
+    border-radius: 50%;
+  }
+}
+.circle-8:nth-of-type(even) {
+  animation: circle-reverse8 8s ease-in-out infinite alternate;
+}
+
+@keyframes circle-reverse8 {
+  100% {
+    transform: rotate(-144deg) scaleY(0.4);
+    border-radius: 50%;
+  }
+}
+.circle-9:nth-of-type(even) {
+  animation: circle-reverse9 8s ease-in-out infinite alternate;
+}
+
+@keyframes circle-reverse9 {
+  100% {
+    transform: rotate(-162deg) scaleY(0.4);
+    border-radius: 50%;
+  }
+}
+.circle-10:nth-of-type(even) {
+  animation: circle-reverse10 8s ease-in-out infinite alternate;
+}
+
+@keyframes circle-reverse10 {
+  100% {
+    transform: rotate(-180deg) scaleY(0.4);
+    border-radius: 50%;
+  }
+}
+
+/* ========================================
+Space
+
+   ====================================== */
+.space__container {
+  background-color: #f7f7f7;
+}
+.space {
+  background-image: linear-gradient(to top right, black, navy);
+  height: 100vh;
+  width: 1000px;
+  margin: 0 auto;
+  position: relative;
+
+  &__title {
+    color: thistle;
+    text-align: center;
+    font-family: "Big Shoulders Stencil Display", cursive;
+    letter-spacing: 6px;
+    padding-top: 15px;
+    font-size: 2rem;
+  }
+}
+
+.orbit {
+  position: absolute;
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+  left: 210px;
+  top: 180px;
+  background-image: linear-gradient(
+    142deg,
+    rgb(88, 53, 88),
+    white,
+    rgb(88, 53, 88),
+    white
+  );
+  animation: orbiting 30s linear infinite both;
+  z-index: 3;
+}
+
+@keyframes orbiting {
+  0% {
+    transform: translate(120px, -80px);
+  }
+
+  50% {
+    transform: translate(-70px, 50px);
+  }
+
+  70% {
+    z-index: 5;
+  }
+
+  100% {
+    transform: translate(120px, -80px);
+    z-index: 5;
+  }
+}
+
+.shootingstar {
+  height: 0;
+  width: 0;
+  border-style: solid;
+  border-width: 0 0.5px 100px 1px;
+  border-color: transparent transparent #ffffcc transparent;
+  position: absolute;
+  left: 400px;
+  top: 300px;
+  transform: rotate(-58deg);
+  animation: shoot 1s linear both;
+  opacity: 0;
+}
+
+@keyframes shoot {
+  0% {
+    transform: translate(0, 0) rotate(-58deg);
+    opacity: 0;
+  }
+  5% {
+    opacity: 0.2;
+  }
+
+  25% {
+    opacity: 1;
+  }
+
+  100% {
+    transform: translate(250px, 150px) rotate(-58deg);
+    opacity: 0;
+  }
+}
+
+.moon {
+  height: 120px;
+  width: 120px;
+  background: silver;
+  border-radius: 50%;
+  position: absolute;
+  top: 120px;
+  left: 200px;
+  z-index: 4;
+
+  &__spot {
+    position: absolute;
+    background-color: lighten(silver, 5%);
+    height: 13px;
+    width: 13px;
+    top: 30px;
+    left: 35px;
+    border-radius: 50%;
+
+    &:nth-child(2) {
+      top: 35px;
+      left: 75px;
+      height: 23px;
+      width: 23px;
+    }
+
+    &:nth-child(3) {
+      top: 70px;
+      left: 40px;
+      height: 18px;
+      width: 18px;
+    }
+  }
+}
+
+.glow {
+  height: 120px;
+  width: 120px;
+  background: silver;
+  border-radius: 50%;
+  position: absolute;
+  top: 120px;
+  left: 200px;
+  z-index: 2;
+  box-shadow: 0 0 100px 5px #ffffcc;
+}
+
+.star {
+  position: absolute;
+  height: 2px;
+  width: 2px;
+  opacity: 0.2;
+  background-color: pink;
+  z-index: 1;
+  border-radius: 50%;
+
+  &:nth-child(25n) {
+    background-color: skyblue;
+    animation: twinkle 2s ease infinite;
+  }
+}
+
+@keyframes twinkle {
+  0% {
+    opacity: 0.2;
+  }
+
+  50% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0.2;
+  }
+}
+
+/* ========================================
+
+ 3D Layers
+
+   ====================================== */
+.flip-layers {
+  margin-bottom: 20px;
+
+  &__title {
+    text-align: center;
+    margin: 2.5em 0;
+  }
+}
+
+.layers {
+  position: relative;
+  width: 350px;
+  margin: 0 auto;
+}
+
+.layers img {
+  position: absolute;
+  max-height: 610px;
+  transition: all 1.6s ease;
+}
+
+.back {
+  width: 350px;
+  top: 20px;
+}
+
+.mid {
+  width: 330px;
+  top: 40px;
+  height: 580px;
+  left: 10px;
+}
+
+.top {
+  width: 310px;
+  top: 50px;
+  height: 550px;
+  left: 20px;
+}
+
+.tip {
+  width: 260px;
+  top: 150px;
+  left: 45px;
+}
+
+.layers:hover img {
+  transform: perspective(1200px) rotateX(50deg) rotateY(20deg) rotateZ(-25deg)
+    translateX(-45px) translateY(100px) translateZ(180px);
+}
+
+.layers:hover img.mid {
+  transform: perspective(1200px) rotateX(50deg) rotateY(20deg) rotateZ(-25deg)
+    translateX(-45px) translateY(100px) translateZ(240px);
+}
+
+.layers:hover img.top {
+  transform: perspective(1200px) rotateX(50deg) rotateY(20deg) rotateZ(-25deg)
+    translateX(-45px) translateY(100px) translateZ(290px);
+}
+
+.layers:hover img.tip {
+  transform: perspective(1200px) rotateX(50deg) rotateY(20deg) rotateZ(-25deg)
+    translateX(-45px) translateY(100px) translateZ(270px);
+}
