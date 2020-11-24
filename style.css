@@ -55,8 +55,8 @@ body {
       -ms-flex-align: center;
           align-items: center;
   text-align: center;
-  -webkit-animation: color 2.5s ease-in forwards;
-          animation: color 2.5s ease-in forwards;
+  -webkit-animation: color 2.5s ease forwards;
+          animation: color 2.5s ease forwards;
 }
 
 .welcome__title {
